@@ -42,7 +42,7 @@ let transformed = [];
 
 const columnWidth = 360;
 const nodeHeight = 40;
-const rowGap = 128;
+const rowGap = 32;
 const padding = 0;
 const headerHeight = 40;
 const margin = 16;
@@ -55,7 +55,7 @@ Object.entries(root).forEach(([parentId, children], rootIndex) => {
     position: {
       x:
         rootIndex > 0
-          ? margin + rootIndex * columnWidth + rowGap * rootIndex
+          ? margin + rootIndex * columnWidth*5 + rowGap * rootIndex
           : margin,
       y: margin,
     },

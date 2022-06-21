@@ -80,7 +80,17 @@ header select {
     display: block;
   }
 }
+.react-flow__edge.selected {
 
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke:hsl(324deg 100% 52%) !important;
+  stroke-width: 5;
+}
+.react-flow__edge .react-flow__edge-path {
+  stroke-width: 2;
+}
 .layoutflow {
   flex-grow: 1;
   position: relative;

@@ -2,13 +2,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
-  tokePath: string
+  name: string
 }
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ tokePath: 'route/tokens' });
-  console.log(res);
+  res.status(200).json({ name: 'John Doe' })
 }
