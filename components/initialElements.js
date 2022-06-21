@@ -1,3 +1,5 @@
+import React from "react";
+
 import { checkIfAlias, getAlias, getAliasValue } from "../utils/alias";
 import { convertToTokenArray } from "../utils/convertTokens";
 const position = { x: 0, y: 0 };
