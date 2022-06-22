@@ -4,7 +4,6 @@ const position = { x: 0, y: 0 };
 const edgeType = "smoothstep";
 import tokens from "../input.json";
 const converted = convertToTokenArray( {tokens} );
-console.log('converted', converted);
 // write a function that takes in a token array and returns unique parent ids depending on nested level
 function getParentIds(tokenArray) {
   const parentIds = [];
@@ -128,6 +127,5 @@ const edges = converted.reduce((acc, token) => {
 }, []);
 
 const combined = [nodes, edges];
-console.log('combined', combined);
 
 export default combined;
