@@ -13,7 +13,6 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
     origin: '*',
     optionsSuccessStatus: 200,
   });
-  console.log('req.body', req.body);
-  const result = tokenData.create(req.body);
+  const result = tokenData.create(JSON.parse(req.body.data));
   res.status(200).json({ result: `${result}` });
 }
