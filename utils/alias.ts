@@ -11,7 +11,7 @@ export function getAliasValue(token: string, tokens: SingleTokenObject[]): strin
     const references = getAlias(token);
     if (!references) return token;
     const aliasValue = references.map(ref => {
-        const token = tokens.find(t => t.name === ref);
+        const token = tokens.find(t => t.name.includes(ref));
         if (!token) return null;
         if (checkIfAlias(token)) {
             // todo: handle other tokens
