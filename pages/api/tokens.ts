@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import NextCors from 'nextjs-cors';
-import { decompress } from 'compress-json';
+import { tokenData } from '../../utils/tokenData';
 
 type Data = {
   result: string
@@ -13,7 +13,7 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
     origin: '*',
     optionsSuccessStatus: 200,
   });
-  const data = JSON.parse(decompress(req.body));
-  console.log('data', data);
-  res.json({ result: 'success' });
+  console.log('req.body', req.body);
+  const result = tokenData.create(req.body);
+  res.status(200).json({ result: `${result}` });
 }
