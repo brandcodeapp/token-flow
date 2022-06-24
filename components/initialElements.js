@@ -3,7 +3,6 @@ import { convertToTokenArray } from '../utils/convertTokens';
 const position = { x: 0, y: 0 };
 const edgeType = 'smoothstep';
 import tokens from '../input.json';
-import { type } from 'os';
 const converted = convertToTokenArray( {tokens} );
 
 // write a function that takes in a token array and returns unique parent ids depending on nested level
@@ -157,7 +156,7 @@ Object.entries(root).forEach(([parentId, children], rootIndex) => {
 const nodes = transformed;
 
 const edges = converted.reduce((acc, token) => {
-  if (checkIfAlias(token.value)) {
+  if (token.type !== 'typography' && token.type !=='boxShadow' && checkIfAlias(token.value)) {
     let alias = getAlias(token.value);
     if (alias.length > 0) {
       alias.forEach((alias) => {
@@ -178,7 +177,5 @@ const edges = converted.reduce((acc, token) => {
 }, []);
 
 const combined = [nodes, edges];
-
-console.log('nodes' ,nodes);
 
 export default combined;
