@@ -86,7 +86,7 @@ function replaceAliasWithResolvedReference(token: string | TypographyObject | Sh
 export function getAliasValue(token: SingleToken | string | number, tokens: SingleToken[] = []): string | number | TypographyObject | ShadowTokenSingleValue | Array<ShadowTokenSingleValue> | null {
   // @TODO not sure how this will handle typography and boxShadow values. I don't believe it works.
   // The logic was copied from the original function in aliases.tsx
-  console.log('tokenValue', token.value);
+      
   let returnedValue: ReturnType<typeof getReturnedValue> | null = getReturnedValue(token);
 
   try {
