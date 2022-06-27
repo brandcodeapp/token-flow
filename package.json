@@ -8,6 +8,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-switch": "^0.1.5",
+    "@reduxjs/toolkit": "^1.8.2",
+    "@rematch/core": "^2.2.0",
+    "@stitches/react": "^1.2.8",
     "color2k": "^2.0.0",
     "compress-json": "^2.0.1",
     "dagre": "^0.8.5",
@@ -18,7 +23,10 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-flow-renderer": "10.0.0-next.22",
+    "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
+    "reselect": "^4.1.6",
+    "uuid": "^8.3.2",
     "write-json-file": "^5.0.0"
   },
   "devDependencies": {
