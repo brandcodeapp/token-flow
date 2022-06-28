@@ -25,11 +25,13 @@ import ReactFlow, {
 import ColorSelectorNode from "../components/ColorSelectorNode";
 import ParentNode from "../components/ParentNode";
 import GroupNode from "../components/GroupNode";
-import initialElements from "../components/initialElements";
+import { getFlowData } from "../components/initialElements";
 import Theme from "./Theme";
+import tokens from '../input.json';
 import store, { RootState } from "../store";
+import { convertToTokenArray } from '../utils/convertTokens';
 
-const [initialNodes, initialEdges] = initialElements;
+const converted = convertToTokenArray( {tokens} );
 
 const onLoad = (reactFlowInstance: OnLoadParams) =>
   console.log("flow loaded:", reactFlowInstance);
@@ -50,16 +52,16 @@ const nodeTypes = {
 
 export default function Home() {
   const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType));
-  let newNodes = [];
-  Object.entries(tokenTypeChecked).forEach((tokenType) => {
-    if(tokenType[1] === true){
-      const result = initialNodes.filter(node => ((node.type === 'parent')) || (node.data.name?.includes(tokenType[0])));
-      if(result)
-        newNodes.push(result);
-    }
+  let newFilter = [];
+  Object.entries(tokenTypeChecked).forEach((tokenStatus) => {
+    if(tokenStatus[1] === false)
+      newFilter.push(tokenStatus[0]);
   });
-  const mergedNodes = newNodes.flat(1);
-  console.log('mergedNodes', mergedNodes);
+
+  const newTokenArray = converted.filter(token => !newFilter.includes(token.type));
+
+  const [initialNodes, initialEdges] = getFlowData(newTokenArray);
+
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
   const [bgColor, setBgColor] = useState<string>(initBgColor);
@@ -116,7 +118,10 @@ export default function Home() {
   //     setNodes(layoutedElements);
   //   },
   //   [nodes]
-  // );  
+  // );
+  useEffect(() => {
+    setNodes(initialNodes);
+  }, [tokenTypeChecked]);
   return (
     <>
     <div style={{ display: 'flex'}}>

@@ -57,7 +57,7 @@ const TreeItem: React.FC<Props> = ({
 }) => {
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = React.useState(false);
-  const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType))
+  const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType));
   const handleSwithcClicked = React.useCallback(() => {
     dispatch(updateTokenTypeStatus({name: tokenType}));
     setIsChecked(!isChecked);
