@@ -1,5 +1,7 @@
 import React, { useState, useEffect, MouseEvent, useCallback } from "react";
 import { Provider, useSelector } from 'react-redux';
+import { useRouter } from 'next/router'
+
 import ReactFlow, {
   isEdge,
   addEdge,
@@ -31,6 +33,7 @@ import tokens from '../input.json';
 import store, { RootState } from "../store";
 import { convertToTokenArray } from '../utils/convertTokens';
 
+console.log('tokens', tokens);
 const converted = convertToTokenArray( {tokens} );
 
 const onLoad = (reactFlowInstance: OnLoadParams) =>
@@ -50,7 +53,7 @@ const nodeTypes = {
   group: GroupNode,
 };
 
-export default function Home() {
+export default function Home(tokenArray) {
   const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType));
   let newFilter = [];
   Object.entries(tokenTypeChecked).forEach((tokenStatus) => {
@@ -58,7 +61,7 @@ export default function Home() {
       newFilter.push(tokenStatus[0]);
   });
 
-  const newTokenArray = converted.filter(token => !newFilter.includes(token.type));
+  const newTokenArray = tokenArray.tokenArray.filter(token => !newFilter.includes(token.type));
 
   const [initialNodes, initialEdges] = getFlowData(newTokenArray);
 
@@ -121,7 +124,7 @@ export default function Home() {
   // );
   useEffect(() => {
     setNodes(initialNodes);
-  }, [tokenTypeChecked]);
+  }, [tokenTypeChecked, tokenArray]);
   return (
     <>
     <div style={{ display: 'flex'}}>
