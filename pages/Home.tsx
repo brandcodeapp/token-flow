@@ -33,7 +33,7 @@ import tokens from '../input.json';
 import store, { RootState } from "../store";
 import { convertToTokenArray } from '../utils/convertTokens';
 
-console.log('tokens', tokens);
+
 const converted = convertToTokenArray( {tokens} );
 
 const onLoad = (reactFlowInstance: OnLoadParams) =>
