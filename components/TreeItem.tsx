@@ -62,7 +62,6 @@ const TreeItem: React.FC<Props> = ({
     dispatch(updateTokenTypeStatus({name: tokenType}));
     setIsChecked(!isChecked);
   }, [isChecked]);
-  
 
   useEffect(() => {
     Object.entries(tokenTypeChecked).forEach(t => {

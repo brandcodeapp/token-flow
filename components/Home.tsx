@@ -48,7 +48,7 @@ const nodeTypes = {
   group: GroupNode,
 };
 
-export default function Home(tokenArray = {'tokenArray': []}) {
+export default function Home(tokenArray) {
   const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType));
   let newFilter = [];
   Object.entries(tokenTypeChecked).forEach((tokenStatus) => {
@@ -119,7 +119,7 @@ export default function Home(tokenArray = {'tokenArray': []}) {
   // );
   useEffect(() => {
     setNodes(initialNodes);
-  }, [tokenArray]);
+  }, [tokenArray, tokenTypeChecked]);
   return (
     <>
     <Provider store={store}>
