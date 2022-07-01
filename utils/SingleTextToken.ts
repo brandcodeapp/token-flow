@@ -1,4 +1,4 @@
-import { TokenTypes } from '@/constants/TokenTypes';
+import { TokenTypes } from '../constants/TokenTypes';
 import { SingleGenericToken } from './SingleGenericToken';
 
 // @TODO remove text type token if not used anymore

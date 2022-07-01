@@ -1,4 +1,4 @@
-import { TokenTypes } from '@/constants/TokenTypes';
+import { TokenTypes } from '../constants/TokenTypes';
 import { TokenTextDecorationValue } from '../values';
 import { SingleGenericToken } from './SingleGenericToken';
 
