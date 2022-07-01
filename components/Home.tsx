@@ -24,17 +24,12 @@ import ReactFlow, {
   applyEdgeChanges,
 } from "react-flow-renderer";
 
-import ColorSelectorNode from "../components/ColorSelectorNode";
-import ParentNode from "../components/ParentNode";
-import GroupNode from "../components/GroupNode";
-import { getFlowData } from "../components/initialElements";
+import ColorSelectorNode from "./ColorSelectorNode";
+import ParentNode from "./ParentNode";
+import GroupNode from "./GroupNode";
+import { getFlowData } from "./initialElements";
 import Theme from "./Theme";
-import tokens from '../input.json';
 import store, { RootState } from "../store";
-import { convertToTokenArray } from '../utils/convertTokens';
-
-
-const converted = convertToTokenArray( {tokens} );
 
 const onLoad = (reactFlowInstance: OnLoadParams) =>
   console.log("flow loaded:", reactFlowInstance);
@@ -53,7 +48,7 @@ const nodeTypes = {
   group: GroupNode,
 };
 
-export default function Home(tokenArray) {
+export default function Home(tokenArray = {'tokenArray': []}) {
   const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType));
   let newFilter = [];
   Object.entries(tokenTypeChecked).forEach((tokenStatus) => {
@@ -124,13 +119,12 @@ export default function Home(tokenArray) {
   // );
   useEffect(() => {
     setNodes(initialNodes);
-  }, [tokenTypeChecked, tokenArray]);
+  }, [tokenArray]);
   return (
     <>
+    <Provider store={store}>
     <div style={{ display: 'flex'}}>
-      <Provider store={store}>
         <Theme />
-      </Provider>      
       <div style={{ height: '100vh' }} className="layoutflow">
         <ReactFlowProvider>
           <ReactFlow
@@ -155,6 +149,7 @@ export default function Home(tokenArray) {
         </ReactFlowProvider>
       </div>
     </div>
+    </Provider>
     </>
   );
 }
