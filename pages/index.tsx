@@ -8,7 +8,7 @@ import { convertToTokenArray } from "../utils/convertTokens";
 function App() {
   let tokens;
   const fileName = useRouter().query;
-  if(fileName.id) tokens = require(`../tokenData/${fileName.id}.json`);  
+  if(fileName.id !== undefined) tokens = require(`../tokenData/${fileName.id}.json`);  
   else tokens = require('../input.json');
   const converted = convertToTokenArray( {tokens} );
   return (
