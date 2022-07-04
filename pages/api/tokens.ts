@@ -10,6 +10,7 @@ type Data = {
 export default async function handler( req: NextApiRequest, res: NextApiResponse<Data>) {
   await NextCors(req, res, {
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    headers: ["X-Requested-With,content-type", 'Access-Control-Allow-Credentials'],
     origin: '*',
     optionsSuccessStatus: 200,
   });
