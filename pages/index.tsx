@@ -9,7 +9,9 @@ function App() {
   let tokens;
   const fileInfo = useRouter().query;
   const [fileName, setFileName] = useState(fileInfo.id);
-  if(typeof fileName !== 'undefined') tokens = require(`../tokenData/${fileName}.json`);  
+  if(typeof fileName !== 'undefined') {
+    tokens = require(`../tokenData/${fileName}.json`);  
+  }
   else tokens = require('../input.json');
   const converted = convertToTokenArray( {tokens} );
 
