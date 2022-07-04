@@ -9,7 +9,8 @@ type Data = {
 }
 
 const cors = Cors({
-  methods: ['GET', 'HEAD'],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  origin: '*',
 })
 
 // Helper method to wait for a middleware to execute before continuing
