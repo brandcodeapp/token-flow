@@ -28,6 +28,6 @@ function runMiddleware(req, res, fn) {
 export default async function handler( req: NextApiRequest, res: NextApiResponse<Data>) {
   await runMiddleware(req, res, cors)
   
-  const result = tokenData.create(JSON.parse(req.body.data));
+  const result = await tokenData.create(JSON.parse(req.body.data));
   res.status(200).json({ result: `${result}` });
 }
