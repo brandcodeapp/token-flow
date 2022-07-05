@@ -3,24 +3,27 @@ import { Provider } from "react-redux";
 import { useRouter } from 'next/router'
 import store from "../store";
 import Home from "../components/Home";
+import useSWR from "swr";
 import { convertToTokenArray } from "../utils/convertTokens";
 
-function App() {
-  let tokens;
-  const fileInfo = useRouter().query;
-  const [fileName, setFileName] = useState(fileInfo.id);
-  if(typeof fileName !== 'undefined') {
-    tokens = require(`../tokenData/${fileName}.json`);  
-  }
-  else tokens = require('../input.json');
-  const converted = convertToTokenArray( {tokens} );
+const url = 'api/data';
 
-  useEffect(() => {
-    setFileName(fileInfo.id);
-  }, [fileInfo]);
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+function App() {
+  let tokens, converted;  
+  const { data, error } = useSWR(
+    url,
+    fetcher
+  );
+  if(typeof data !== undefined){
+    tokens = JSON.parse(data);
+    converted = convertToTokenArray( {tokens} );
+  }
+
   return (
     <>
-    {typeof fileName !== 'undefined' &&
+    {typeof data !== 'undefined' &&
       <Provider store={store}>
         <Home tokenArray={converted}/>
       </Provider>
