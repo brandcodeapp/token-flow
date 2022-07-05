@@ -40,5 +40,5 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
       content: JSON.parse(req.body.data)
     }
   });
-  res.status(200).json(result.userId);
+  res.status(200).json({result: result.userId});
 }

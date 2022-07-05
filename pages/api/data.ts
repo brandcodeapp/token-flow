@@ -37,6 +37,5 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
       id: parseInt('1'),
     }
   });  
-  return res.status(200).json(result.content);
-  // res.status(200).json({ result: `${result}` });
+  return res.status(200).json({ result: result.content});
 }

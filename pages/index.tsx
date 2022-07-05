@@ -6,18 +6,17 @@ import Home from "../components/Home";
 import useSWR from "swr";
 import { convertToTokenArray } from "../utils/convertTokens";
 
-const url = 'api/data';
-
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 function App() {
   let tokens, converted;  
   const { data, error } = useSWR(
-    url,
+    "api/data",
     fetcher
   );
-  if(typeof data !== undefined){
-    tokens = JSON.parse(data);
+  if(typeof data === 'object'){
+    const res = JSON.parse(data.result);
+    tokens = JSON.parse(res);
     converted = convertToTokenArray( {tokens} );
   }
 
